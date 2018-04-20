@@ -11,6 +11,7 @@ public class JsonParser {
     public static CityWeather parseCityWeatherFrom(String jsonString) {
         ObjectMapper mapper = new ObjectMapper();
 
+        //TODO: Handle errors
         CityWeather cityWeather = null;
         try {
             cityWeather = mapper.readValue(jsonString, CityWeather.class);
