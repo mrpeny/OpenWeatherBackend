@@ -1,8 +1,6 @@
 package eu.captaincode.backend;
 
-import eu.captaincode.backend.dto.CityWeather;
-import eu.captaincode.backend.util.JsonParser;
-import eu.captaincode.backend.util.NetworkUtils;
+import eu.captaincode.backend.service.OpenWeatherRequest;
 
 import java.util.Scanner;
 
@@ -16,11 +14,12 @@ public class App {
     }
 
     private void run() {
+        System.out.println("Enter city name to show current temperature for:");
         Scanner scanner = new Scanner(System.in);
         //TODO: Handle city names with space
         String city = scanner.next();
-        String jsonString = NetworkUtils.getCityWeatherJson(city);
-        CityWeather cityWeather = JsonParser.parseCityWeatherFrom(jsonString);
-        System.out.printf("The temperature in %s is %f °C: ", cityWeather.getName(), cityWeather.getMain().getTemp());
+        OpenWeatherRequest openWeatherRequest = new OpenWeatherRequest();
+        Double cityTemperature = openWeatherRequest.getTemperatureByCity(city);
+        System.out.printf("The temperature in %s is %f °C: ", city, cityTemperature);
     }
 }
