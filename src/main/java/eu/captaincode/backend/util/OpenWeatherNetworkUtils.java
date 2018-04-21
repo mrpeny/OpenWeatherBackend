@@ -14,7 +14,7 @@ import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-public class NetworkUtils {
+public class OpenWeatherNetworkUtils {
     private static final String PARAM_KEY_APP_ID = "APPID";
     //TODO: Insert your API key here
     private static final String PARAM_VALUE_APP_ID = "insert-your-api-key-here";
@@ -25,7 +25,7 @@ public class NetworkUtils {
 
     private static final String BASE_API_URI_OWM = "http://api.openweathermap.org/data/2.5/weather";
 
-    public static String getCityWeatherJson(String city) {
+    public String getCityWeatherJson(String city) {
         if (TextUtils.isEmpty(city)) {
             return null;
         }
@@ -49,7 +49,7 @@ public class NetworkUtils {
         return jsonString;
     }
 
-    private static URI buildUriWithCity(String city) {
+    private URI buildUriWithCity(String city) {
         URI uriWithCityName = null;
         try {
             URIBuilder uriBuilder = new URIBuilder(BASE_API_URI_OWM);

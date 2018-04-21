@@ -7,8 +7,8 @@ import eu.captaincode.backend.dto.CityWeather;
 
 import java.io.IOException;
 
-public class JsonParser {
-    public static CityWeather parseCityWeatherFrom(String jsonString) {
+public class OpenWeatherJsonParser {
+    public CityWeather parseCityWeatherFrom(String jsonString) {
         ObjectMapper mapper = new ObjectMapper();
 
         //TODO: Handle errors

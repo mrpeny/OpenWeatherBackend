@@ -1,16 +1,23 @@
 package eu.captaincode.backend.service;
 
 import eu.captaincode.backend.dto.CityWeather;
-import eu.captaincode.backend.util.JsonParser;
-import eu.captaincode.backend.util.NetworkUtils;
+import eu.captaincode.backend.util.OpenWeatherJsonParser;
+import eu.captaincode.backend.util.OpenWeatherNetworkUtils;
 
 public class OpenWeatherRequest implements WeatherRequestService {
-    @Override
-    public Double getTemperatureByCity(String cityName) {
-        String jsonString = NetworkUtils.getCityWeatherJson(cityName);
-        CityWeather cityWeather = JsonParser.parseCityWeatherFrom(jsonString);
-        return cityWeather.getMain().getTemp();
+    private OpenWeatherNetworkUtils openWeatherNetworkUtils;
+    private OpenWeatherJsonParser openWeatherJsonParser;
+
+    public OpenWeatherRequest(OpenWeatherNetworkUtils openWeatherNetworkUtils,
+                              OpenWeatherJsonParser openWeatherJsonParser) {
+        this.openWeatherNetworkUtils = openWeatherNetworkUtils;
+        this.openWeatherJsonParser = openWeatherJsonParser;
     }
 
-
+    @Override
+    public Double getTemperatureByCity(String cityName) {
+        String jsonString = openWeatherNetworkUtils.getCityWeatherJson(cityName);
+        CityWeather cityWeather = openWeatherJsonParser.parseCityWeatherFrom(jsonString);
+        return cityWeather.getMain().getTemp();
+    }
 }
