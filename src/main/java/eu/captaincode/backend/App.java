@@ -1,6 +1,10 @@
 package eu.captaincode.backend;
 
 import eu.captaincode.backend.service.OpenWeatherRequest;
+import eu.captaincode.backend.service.WeatherRequestService;
+import eu.captaincode.backend.spring.SpringConfiguration;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Scanner;
 
@@ -18,7 +22,10 @@ public class App {
         Scanner scanner = new Scanner(System.in);
         //TODO: Handle city names with space
         String city = scanner.next();
-        OpenWeatherRequest openWeatherRequest = new OpenWeatherRequest();
+
+        ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfiguration.class);
+        WeatherRequestService openWeatherRequest = context.getBean(OpenWeatherRequest.class);
+
         Double cityTemperature = openWeatherRequest.getTemperatureByCity(city);
         System.out.printf("The temperature in %s is %f °C: ", city, cityTemperature);
     }
