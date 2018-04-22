@@ -3,6 +3,8 @@ package eu.captaincode.backend;
 import eu.captaincode.backend.service.OpenWeatherRequest;
 import eu.captaincode.backend.service.WeatherRequestService;
 import eu.captaincode.backend.spring.SpringConfiguration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -12,8 +14,11 @@ import java.util.Scanner;
  * Hello world!
  */
 public class App {
+    private static Logger logger = LoggerFactory.getLogger(App.class);
+
     public static void main(String[] args) {
         App app = new App();
+        logger.info("Info log message");
         app.run();
     }
 
