@@ -18,7 +18,7 @@ public class App {
 
     public static void main(String[] args) {
         App app = new App();
-        logger.info("Info log message");
+        logger.info("App started");
         app.run();
     }
 
@@ -29,9 +29,11 @@ public class App {
         String city = scanner.next();
 
         ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfiguration.class);
-        WeatherRequestService openWeatherRequest = context.getBean(OpenWeatherRequest.class);
+        WeatherRequestService weatherRequestService = context.getBean(OpenWeatherRequest.class);
 
-        Double cityTemperature = openWeatherRequest.getTemperatureByCity(city);
-        System.out.printf("The temperature in %s is %f °C: ", city, cityTemperature);
+        Double cityTemperature = weatherRequestService.getTemperatureByCity(city);
+        if (cityTemperature != null) {
+            System.out.printf("The temperature in %s is %d °C: ", city, Math.round(cityTemperature));
+        }
     }
 }

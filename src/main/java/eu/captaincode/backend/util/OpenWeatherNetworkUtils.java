@@ -7,6 +7,8 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.TextUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,6 +17,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 public class OpenWeatherNetworkUtils {
+    private static Logger logger = LoggerFactory.getLogger(OpenWeatherNetworkUtils.class);
+
     private static final String PARAM_KEY_APP_ID = "APPID";
     //TODO: Insert your API key here
     private static final String PARAM_VALUE_APP_ID = "insert-your-api-key-here";
@@ -27,6 +31,7 @@ public class OpenWeatherNetworkUtils {
 
     public String getCityWeatherJson(String city) {
         if (TextUtils.isEmpty(city)) {
+            logger.debug("Empty city string entered for query");
             return null;
         }
 
@@ -44,7 +49,7 @@ public class OpenWeatherNetworkUtils {
             }
             jsonString = stringBuilder.toString();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Error while reading data from OpenWeatherMap WEB api", e);
         }
         return jsonString;
     }
@@ -58,7 +63,7 @@ public class OpenWeatherNetworkUtils {
             uriBuilder.addParameter(PARAM_KEY_APP_ID, PARAM_VALUE_APP_ID);
             uriWithCityName = uriBuilder.build();
         } catch (URISyntaxException e) {
-            e.printStackTrace();
+            logger.error("Failed to build uri", e);
         }
         return uriWithCityName;
     }
