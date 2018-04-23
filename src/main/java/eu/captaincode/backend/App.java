@@ -23,10 +23,9 @@ public class App {
     }
 
     private void run() {
-        System.out.println("Enter city name to show current temperature for:");
+        System.out.print("Enter city name to show current temperature for: ");
         Scanner scanner = new Scanner(System.in);
-        //TODO: Handle city names with space
-        String city = scanner.next();
+        String city = scanner.nextLine().trim();
 
         ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfiguration.class);
         WeatherRequestService weatherRequestService = context.getBean(OpenWeatherRequest.class);

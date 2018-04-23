@@ -20,7 +20,6 @@ public class OpenWeatherJsonParser {
         }
         ObjectMapper mapper = new ObjectMapper();
 
-        //TODO: Handle errors
         CityWeather cityWeather = null;
         try {
             cityWeather = mapper.readValue(jsonString, CityWeather.class);
