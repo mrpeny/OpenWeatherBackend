@@ -35,14 +35,14 @@ public class OpenWeatherRequestTest {
     private CityWeather cityWeather;
 
 
-    private OpenWeatherRequest testRequest;
+    private OpenWeatherRequestServiceImpl testRequest;
 
     @Before
     public void setUp() {
         cityWeather = mock(CityWeather.class);
         jsonParser = mock(OpenWeatherJsonParser.class);
         networkUtils = mock(OpenWeatherNetworkUtils.class);
-        testRequest = new OpenWeatherRequest(networkUtils, jsonParser);
+        testRequest = new OpenWeatherRequestServiceImpl(networkUtils, jsonParser);
     }
 
     @Test
