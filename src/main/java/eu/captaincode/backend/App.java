@@ -1,6 +1,6 @@
 package eu.captaincode.backend;
 
-import eu.captaincode.backend.service.OpenWeatherRequest;
+import eu.captaincode.backend.service.OpenWeatherRequestServiceImpl;
 import eu.captaincode.backend.service.WeatherRequestService;
 import eu.captaincode.backend.spring.SpringConfiguration;
 import org.slf4j.Logger;
@@ -28,7 +28,7 @@ public class App {
         String city = scanner.nextLine().trim();
 
         ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfiguration.class);
-        WeatherRequestService weatherRequestService = context.getBean(OpenWeatherRequest.class);
+        WeatherRequestService weatherRequestService = context.getBean(OpenWeatherRequestServiceImpl.class);
 
         Double cityTemperature = weatherRequestService.getTemperatureByCity(city);
         if (cityTemperature != null) {

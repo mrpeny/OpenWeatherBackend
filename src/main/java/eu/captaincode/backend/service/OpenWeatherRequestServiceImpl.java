@@ -6,15 +6,15 @@ import eu.captaincode.backend.util.OpenWeatherNetworkUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class OpenWeatherRequest implements WeatherRequestService {
+public class OpenWeatherRequestServiceImpl implements WeatherRequestService {
     private static final int COD_OK = 200;
-    private final Logger logger = LoggerFactory.getLogger(OpenWeatherRequest.class);
+    private final Logger logger = LoggerFactory.getLogger(OpenWeatherRequestServiceImpl.class);
 
     private final OpenWeatherNetworkUtils openWeatherNetworkUtils;
     private final OpenWeatherJsonParser openWeatherJsonParser;
 
-    public OpenWeatherRequest(OpenWeatherNetworkUtils openWeatherNetworkUtils,
-                              OpenWeatherJsonParser openWeatherJsonParser) {
+    public OpenWeatherRequestServiceImpl(OpenWeatherNetworkUtils openWeatherNetworkUtils,
+                                         OpenWeatherJsonParser openWeatherJsonParser) {
         this.openWeatherNetworkUtils = openWeatherNetworkUtils;
         this.openWeatherJsonParser = openWeatherJsonParser;
     }

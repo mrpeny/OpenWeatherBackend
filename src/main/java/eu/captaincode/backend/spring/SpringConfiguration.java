@@ -1,6 +1,6 @@
 package eu.captaincode.backend.spring;
 
-import eu.captaincode.backend.service.OpenWeatherRequest;
+import eu.captaincode.backend.service.OpenWeatherRequestServiceImpl;
 import eu.captaincode.backend.util.OpenWeatherJsonParser;
 import eu.captaincode.backend.util.OpenWeatherNetworkUtils;
 import org.springframework.context.annotation.Bean;
@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SpringConfiguration {
     @Bean
-    public OpenWeatherRequest openWeatherRequest() {
-        return new OpenWeatherRequest(openWeatherNetworkUtils(), openWeatherJsonParser());
+    public OpenWeatherRequestServiceImpl openWeatherRequest() {
+        return new OpenWeatherRequestServiceImpl(openWeatherNetworkUtils(), openWeatherJsonParser());
     }
 
     @Bean
