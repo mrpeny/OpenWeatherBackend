@@ -22,7 +22,7 @@ public class App {
         app.run();
     }
 
-    private void run() {
+    String run() {
         System.out.print("Enter city name to show current temperature for: ");
         Scanner scanner = new Scanner(System.in);
         String city = scanner.nextLine().trim();
@@ -31,8 +31,11 @@ public class App {
         WeatherRequestService weatherRequestService = context.getBean(OpenWeatherRequestServiceImpl.class);
 
         Double cityTemperature = weatherRequestService.getTemperatureByCity(city);
+        String message = null;
         if (cityTemperature != null) {
-            System.out.printf("The temperature in %s is %d °C: ", city, Math.round(cityTemperature));
+            message = String.format("The temperature in %s is %d °C: ", city, Math.round(cityTemperature));
+            System.out.println(message);
         }
+        return message;
     }
 }
